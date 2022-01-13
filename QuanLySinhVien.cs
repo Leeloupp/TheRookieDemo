@@ -41,9 +41,67 @@ namespace BaiTapQLSinhVien
             sv.guaduated = Convert.ToString(Console.ReadLine());
             ListSinhVien.Add(sv);
         }
-
+        public void ShowSinhVien(List<SinhVien> ListSV){
+            Console.WriteLine("{0, -5} {1, -20} {2, -5} {3, 5} {4, 5} {5, 5} {6, 5} {7, 10} ",
+                  "Fist Name", "Last Name", "Gender", "Date Of Birth", "Phone Number", "Birth Place", "Age", "Is Guaduated");
+            if (listSV != null && listSV.Count > 0)
+            {
+                foreach (SinhVien sv in listSV)
+                {
+                    Console.WriteLine("{0, -5} {1, -20} {2, -5} {3, 5} {4, 5} {5, 5} {6, 5} {7, 10} ",
+                                      sv.fistName, sv.lastName, sv.gender, sv.dateOfBirth, sv.phoneNumber, sv.birthPlace, sv.age,
+                                      sv.duaduated);
+                }
+            }
+            Console.WriteLine();
+        }
 
     }
+    public List<SinhVien> getListSinhVien(){
+        return ListSinhVien;
+    }
+    class program{
+        static void Main(string[] args){
+            QuanLySinhVien quanLySinhVien = new QuanLySinhVien();
+            while(true){
+                Console.WriteLine("\nCHUONG TRINH QUAN LY SINH VIEN C#");
+                Console.WriteLine("*************************MENU**************************");
+                Console.WriteLine("**  1. Them sinh vien.                               **");
+                Console.WriteLine("**  2. Hien thi danh sach sinh vien.                 **");
+                Console.WriteLine("**  0. Thoat                                         **");
+                Console.WriteLine("*******************************************************");
+                Console.Write("Nhap tuy chon: ");
+                int key = Convert.ToInt32(Console.ReadLine());
+                 switch (key)
+                {
+                    case 1:
+                        Console.WriteLine("\n1. Them sinh vien.");
+                        quanLySinhVien.NhapSinhVien();
+                        Console.WriteLine("\nThem sinh vien thanh cong!");
+                        break;
+                    case 2:
+                        if (quanLySinhVien.SoLuongSinhVien() > 0)
+                        {
+                            Console.WriteLine("\n7. Hien thi danh sach sinh vien.");
+                            quanLySinhVien.ShowSinhVien(quanLySinhVien.getListSinhVien());
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nSanh sach sinh vien trong!");
+                        }
+                        break;
+                    case 0:
+                        Console.WriteLine("\nBan da chon thoat chuong trinh!");
+                        return;
+                    default:
+                        Console.WriteLine("\nKhong co chuc nang nay!");
+                        Console.WriteLine("\nHay chon chuc nang trong hop menu.");
+                        break;
+                }
+            }
+        }
+    }
+
 
 
 
